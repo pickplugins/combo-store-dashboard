@@ -17,14 +17,6 @@ const Cart = ({ id }) => {
 
 
 	const [coupons, setcoupons] = useState({ applied: false, couponCode: "", discountAmount: 0, });
-	// const [cartItems, setcartItems] = useState([
-	// 	{ id: 123, title: "Fresh Happy Nappy Pant Diaper M (7- 12 kg)", quantity: 3, price: 123, oldPrice: 125, priceHtml: "", thumbnail: "http://localhost/wp/wp-content/uploads/2025/05/5-24-2025-11-25-05-AM.png" },
-	// 	{ id: 124, title: "NeoCare Premium Baby Diaper Belt L (7-18 kg)", quantity: 3, price: 123, oldPrice: 125, priceHtml: "", thumbnail: "http://localhost/wp/wp-content/uploads/2025/05/5-24-2025-11-25-05-AM.png" },
-	// 	{ id: 125, title: "MamyPoko Pants Diaper Pant L (9-14 kg)", quantity: 3, price: 123, oldPrice: 125, priceHtml: "", thumbnail: "http://localhost/wp/wp-content/uploads/2025/05/5-24-2025-11-25-05-AM.png" },
-	// ]);
-
-
-
 
 	const [cartTotal, setcartTotal] = useState(0);
 	const [shippingCost, setshippingCost] = useState(0);
@@ -47,7 +39,7 @@ const Cart = ({ id }) => {
 		setcartTotalQuantity(totalQuantity)
 		setcartTotalPay(cartTotal + shippingCost - coupons.discountAmount)
 
-	}, [cartItems]);
+	}, [cartItems, shippingCost, coupons]);
 
 
 
@@ -122,9 +114,8 @@ const Cart = ({ id }) => {
 
 													<span onClick={() => {
 
-														var cartItemsX = [...cartItems]
-														cartItemsX[index].quantity = item.quantity + 1;
-														//setcartItems(cartItemsX)
+														var quantity = item.quantity == 1 ? 1 : item.quantity + 1;
+														updateCartItems(item.id, { quantity: quantity })
 													}} className="cursor-pointer hover:text-gray-600 bg-amazon-600 rounded-sm text-white">
 														<IconChevronUp />
 													</span>
@@ -135,9 +126,9 @@ const Cart = ({ id }) => {
 													<span>{item.quantity}</span>
 													<span onClick={() => {
 
-														var cartItemsX = [...cartItems]
-														cartItemsX[index].quantity = item.quantity == 1 ? 1 : item.quantity - 1;
-														//setcartItems(cartItemsX)
+														var quantity = item.quantity == 1 ? 1 : item.quantity - 1;
+														updateCartItems(item.id, { quantity: quantity })
+
 													}} className="cursor-pointer hover:text-gray-600 bg-amazon-600 rounded-sm text-white">
 														<IconChevronDown />
 													</span>

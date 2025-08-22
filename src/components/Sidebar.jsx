@@ -34,7 +34,8 @@ const Sidebar = ({ user }) => {
 	const location = useLocation();
 	var currentLocation = location.pathname;
 
-	console.log(currentLocation);
+	var currentLocationArr = currentLocation.split("/");
+	currentLocationArr = currentLocationArr.filter(item => item);
 
 
 	var navs = [
@@ -51,7 +52,7 @@ const Sidebar = ({ user }) => {
 
 		{ label: t("Sell"), value: "sell", icon: <IconBasketCheck /> },
 		{ label: t("Orders"), value: "orders", icon: <IconBasketCheck />, parent: "sell" },
-		{ label: t("Delivery "), value: "delivery ", icon: <IconTruckDelivery />, parent: "sell" },
+		{ label: t("Delivery "), value: "delivery", icon: <IconTruckDelivery />, parent: "sell" },
 
 		{ label: t("Refunds"), value: "refunds", icon: <IconReceiptRefund />, parent: "sell" },
 		{ label: t("Subscriptions"), value: "subscriptions", icon: <IconRotateRectangle />, parent: "sell" },
@@ -60,9 +61,9 @@ const Sidebar = ({ user }) => {
 		{ label: t("Customers"), value: "customers", icon: <IconUserDollar />, parent: "users" },
 		{ label: t("Suppliers"), value: "suppliers", icon: <IconTrolley />, parent: "users" },
 		{ label: t("Sellers"), value: "sellers", icon: <IconUserPin />, parent: "users" },
-		{ label: t("Riders "), value: "riders ", icon: <IconBike />, parent: "users" },
+		{ label: t("Riders "), value: "riders", icon: <IconBike />, parent: "users" },
 
-		{ label: t("Support "), value: "support ", icon: <IconMessageUser />, },
+		{ label: t("Support "), value: "support", icon: <IconMessageUser />, },
 		{ label: t("Settings "), value: "settings ", icon: <IconAdjustmentsAlt />, },
 		// { label: t("Credits"), value: "credits", icon: <IconCards /> },
 		// { label: "CreditsLogs", value: "creditslogs", icon: <IconDatabaseEdit /> },
@@ -175,6 +176,9 @@ const Sidebar = ({ user }) => {
 						{navTree.map((nav, index) => {
 
 							var children = nav.children;
+
+
+
 							if (children.length == 0) {
 								return (
 									<Link
@@ -197,13 +201,20 @@ const Sidebar = ({ user }) => {
 
 							if (children.length > 0) {
 
+								console.log(currentLocationArr[0]);
+
+								const index = children.findIndex(item => item.value === currentLocationArr[0]);
+
+								console.log(index);
+								console.log(children[index]?.parent);
+
 
 
 								return (
 
 									<div className="">
 
-										<ToggleContent isOpen={false} labelIcon={nav.icon} iconPosition={`right`} title={nav.label} headerClass={`hover:bg-amazon-600 hover:text-white mb-2 rounded-sm  text-gray-500 border-0  border-solid border-gray-300 cursor-pointer px-4 py-2 flex items-center gap-2`} headerTitleClass={``} contentClass={` `}>
+										<ToggleContent isOpen={(nav.value === children[index]?.parent) ? true : false} labelIcon={nav.icon} iconPosition={`right`} title={nav.label} headerClass={`hover:bg-amazon-600 hover:text-white mb-2 rounded-sm  text-gray-500 border-0  border-solid border-gray-300 cursor-pointer px-4 py-2 flex items-center gap-2`} headerTitleClass={``} contentClass={` `}>
 
 											<div className="ml-2 pl-2 border-l-2 border-gray-500">
 

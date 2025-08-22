@@ -160,191 +160,198 @@ function ProductView({ user }) {
   return (
     <Layout user={user} >
 
-      {/* {JSON.stringify(productData)} */}
-
-      <div className="p-5 grid grid-cols-2 gap-5">
 
 
-        <div className="bg-white shadow-sm border border-gray-200 p-5 rounded-sm">
-
-          <h3 className="text-2xl mb-4">{t("Gallery ")}</h3>
-
-          <div>
-            {productData?.gallery !== undefined && (
-
-              <ImageGallery images={productData?.gallery} />
-            )}
+      <div className="w-[1400px] mx-auto">
 
 
-          </div>
-
-        </div>
+        <div className="p-5 grid grid-cols-2 gap-5">
 
 
-        <div className="bg-white shadow-sm border border-gray-200 p-5 rounded-sm">
+          <div className="  p-5 rounded-sm">
 
+            <h3 className="text-2xl mb-4">{t("Gallery ")}</h3>
 
+            <div>
+              {productData?.gallery !== undefined && (
 
-          <h3 className="text-3xl font-bold text-gray-600 mb-4">{productData?.title}</h3>
-          <h3 className="text-2xl mb-4">${productData?.price}</h3>
-          <h3 className="text-base mb-4">{productData?.post_excerpt}</h3>
-          <div dangerouslySetInnerHTML={{ __html: productData?.price_html }} />
-          <div dangerouslySetInnerHTML={{ __html: productData?.excerpt }} />
+                <ImageGallery images={productData?.gallery} />
+              )}
 
-
-
-          <div className="flex flex-col gap-4">
-
-
-
-            <div className="flex  gap-2 ">
-
-              <div>SKU:</div>
-              <div dangerouslySetInnerHTML={{ __html: productData?.sku }} />
 
             </div>
-            <div className="flex  gap-2 ">
-
-              <div>Categories:</div>
-              <div className="flex  ">
-                {productData?.categories.map((item, index) => {
-
-                  return (
-                    <div >
-                      <span>{item.name}</span>
-                      {productData?.categories.length > (index + 1) && (
-                        <span className="pr-1">, </span>
-                      )}
-                    </div>
-                  )
-
-                })}
-              </div>
-            </div>
-            <div className="flex  gap-2 ">
-
-              <div>Tags:</div>
-              <div className="flex  ">
-                {productData?.tags.map((item, index) => {
-
-                  return (
-                    <div >
-                      <span>{item.name}</span>
-                      {productData?.tags.length > (index + 1) && (
-                        <span className="pr-1">, </span>
-                      )}
-                    </div>
-                  )
-
-                })}
-              </div>
-            </div>
-            <AddToCart productData={productData} />
 
           </div>
 
 
-        </div>
+          <div className=" p-5 rounded-sm">
 
 
 
+            <h3 className="text-3xl font-bold text-gray-600 mb-4">{productData?.title}</h3>
+            <h3 className="text-2xl mb-4">${productData?.price}</h3>
+            <h3 className="text-base mb-4">{productData?.post_excerpt}</h3>
+            <div dangerouslySetInnerHTML={{ __html: productData?.price_html }} />
+            <div dangerouslySetInnerHTML={{ __html: productData?.excerpt }} />
 
 
-      </div>
+
+            <div className="flex flex-col gap-4">
 
 
-      <div className="my-10">
-        <Tabs activeTab="options"
-          orientation="horizontal"
-          activeClass="active-tab"
-          onSelect={(tabName) => { }}
-          tabs={[
-            { label: "Description" },
-            { label: "Reviews" },
-            { label: "FAQ" },
-          ]}>
-          <Tab index={0}>
-            <div>
 
+              <div className="flex  gap-2 ">
 
-              {productData?.post_content}
-            </div>
-          </Tab>
-          <Tab index={1}>
-            <div>
-              <Comments postData={productData} dummyComments={communityComments} id={id} />
-            </div>
-
-          </Tab>
-          <Tab index={2}>
-            <div className="p-5 bg-gray-800 rounded-sm">
-              <div className="flex gap-3">
-                <div className="text-2xl text-white">{t("Frequently Asked Questions")}</div>
-              </div>
-              <div className="my-4 flex flex-col gap-5 ">
-
-
-                {productData?.faq && (
-
-                  <div className="my-4">
-                    {productData?.faq.map((item, index) => {
-
-                      return (
-                        <ToggleContent key={index} title={<FAQTitle text={item.title} index={index} />}
-                          contentClass=""
-                          headerClass=""
-                          headerTitleClass=""
-                          wrapperClass=""
-                        >
-
-                          <div className="text-gray-200">
-
-
-                            {item?.content}
-
-
-                          </div>
-
-                        </ToggleContent>
-                      )
-
-                    })}
-                  </div>
-                )}
-
+                <div>SKU:</div>
+                <div dangerouslySetInnerHTML={{ __html: productData?.sku }} />
 
               </div>
+              <div className="flex  gap-2 ">
+
+                <div>Categories:</div>
+                <div className="flex  ">
+                  {productData?.categories.map((item, index) => {
+
+                    return (
+                      <div key={index}>
+                        <span>{item.name}</span>
+                        {productData?.categories.length > (index + 1) && (
+                          <span className="pr-1">, </span>
+                        )}
+                      </div>
+                    )
+
+                  })}
+                </div>
+              </div>
+              <div className="flex  gap-2 ">
+
+                <div>Tags:</div>
+                <div className="flex  ">
+                  {productData?.tags.map((item, index) => {
+
+                    return (
+                      <div key={index}>
+                        <span>{item.name}</span>
+                        {productData?.tags.length > (index + 1) && (
+                          <span className="pr-1">, </span>
+                        )}
+                      </div>
+                    )
+
+                  })}
+                </div>
+              </div>
+              <AddToCart productData={productData} />
 
             </div>
 
-          </Tab>
+
+          </div>
 
 
 
-        </Tabs>
+
+
+        </div>
+
+
+        <div className="my-10">
+          <Tabs activeTab="options"
+            orientation="horizontal"
+            activeClass="active-tab"
+            onSelect={(tabName) => { }}
+            tabs={[
+              { label: "Description" },
+              { label: "Reviews" },
+              { label: "FAQ" },
+            ]}>
+            <Tab index={0}>
+              <div>
+
+
+                {productData?.post_content}
+              </div>
+            </Tab>
+            <Tab index={1}>
+              <div>
+                <Comments postData={productData} dummyComments={communityComments} id={id} />
+              </div>
+
+            </Tab>
+            <Tab index={2}>
+              <div className="p-5 bg-gray-800 rounded-sm">
+                <div className="flex gap-3">
+                  <div className="text-2xl text-white">{t("Frequently Asked Questions")}</div>
+                </div>
+                <div className="my-4 flex flex-col gap-5 ">
+
+
+                  {productData?.faq && (
+
+                    <div className="my-4">
+                      {productData?.faq.map((item, index) => {
+
+                        return (
+                          <ToggleContent key={index} title={<FAQTitle text={item.title} index={index} />}
+                            contentClass=""
+                            headerClass=""
+                            headerTitleClass=""
+                            wrapperClass=""
+                          >
+
+                            <div className="text-gray-200">
+
+
+                              {item?.content}
+
+
+                            </div>
+
+                          </ToggleContent>
+                        )
+
+                      })}
+                    </div>
+                  )}
+
+
+                </div>
+
+              </div>
+
+            </Tab>
+
+
+
+          </Tabs>
+
+        </div>
+
+        {productData?.upsells.length > 0 && (
+          <div className="p-5  rounded-sm">
+            <div className="flex gap-3">
+              <div className="text-2xl ">{t("Frequently Bought Together")}</div>
+            </div>
+            <div className="my-4 ">
+              <Upsells productData={productData} />
+            </div>
+          </div>
+        )}
+
+
+
+        <div className="p-5  rounded-sm">
+          <div className="flex gap-3">
+            <div className="text-2xl ">{t("Related Products")}</div>
+          </div>
+          <div className="my-4 ">
+            <RelatedPosts postId={productData?.id} categories={categories} />
+          </div>
+        </div>
+
 
       </div>
-
-      <div className="p-5  rounded-sm">
-        <div className="flex gap-3">
-          <div className="text-2xl ">{t("Frequently Bought Together")}</div>
-        </div>
-        <div className="my-4 ">
-          <Upsells productData={productData} />
-        </div>
-      </div>
-
-      <div className="p-5  rounded-sm">
-        <div className="flex gap-3">
-          <div className="text-2xl ">{t("Related Products")}</div>
-        </div>
-        <div className="my-4 ">
-          <RelatedPosts postId={productData?.id} categories={categories} />
-        </div>
-      </div>
-
-
-
 
 
 

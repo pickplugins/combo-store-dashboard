@@ -5,6 +5,7 @@ const ToggleContent = (props) => {
 
   var children = props.children;
   var title = props.title;
+  var isOpenX = props.isOpen;
   var labelIcon = props.labelIcon;
   var iconPosition = props.iconPosition;
 
@@ -13,7 +14,7 @@ const ToggleContent = (props) => {
   var wrapperClass = props.wrapperClass ? props.wrapperClass : "w-full mb-1";
   var contentClass = props.contentClass ? props.contentClass : "p-3 bg-gray-700";
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(isOpenX);
 
   return (
     <div className={wrapperClass}>
