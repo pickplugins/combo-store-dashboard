@@ -30,6 +30,9 @@ import EditProfile from './pages/EditProfile';
 import PrivateRoute from './pages/PrivateRoute';
 import AuthProvider from './components/AuthContext';
 
+import Tickets from "./pages/Tickets";
+import TicketsDetail from "./pages/TicketsDetail";
+import TicketsSubmit from "./pages/TicketsSubmit";
 
 
 import './index.css'
@@ -144,6 +147,36 @@ function App() {
             </PrivateRoute>
           }
         />
+
+
+        <Route
+          path="/tickets/"
+          element={
+            <PrivateRoute>
+              <Tickets />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/tickets/:id"
+          element={
+            <PrivateRoute>
+              <TicketsDetail />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/tickets-submit/"
+          element={
+            <TicketsSubmit />
+          }
+        />
+
+
+
+
+
+
         <Route
           path="/wishlist"
           element={

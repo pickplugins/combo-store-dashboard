@@ -61,10 +61,10 @@ const Sidebar = ({ user }) => {
 		{ label: t("Customers"), value: "customers", icon: <IconUserDollar />, parent: "users" },
 		{ label: t("Suppliers"), value: "suppliers", icon: <IconTrolley />, parent: "users" },
 		{ label: t("Sellers"), value: "sellers", icon: <IconUserPin />, parent: "users" },
-		{ label: t("Riders "), value: "riders", icon: <IconBike />, parent: "users" },
+		{ label: t("Riders"), value: "riders", icon: <IconBike />, parent: "users" },
 
-		{ label: t("Support "), value: "support", icon: <IconMessageUser />, },
-		{ label: t("Settings "), value: "settings ", icon: <IconAdjustmentsAlt />, },
+		{ label: t("Tickets"), value: "tickets", icon: <IconMessageUser />, },
+		{ label: t("Settings"), value: "settings ", icon: <IconAdjustmentsAlt />, },
 		// { label: t("Credits"), value: "credits", icon: <IconCards /> },
 		// { label: "CreditsLogs", value: "creditslogs", icon: <IconDatabaseEdit /> },
 		// { label: "Licenses", value: "licenses", icon: <IconBasketCheck /> },
